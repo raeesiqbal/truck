@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui" />
+    <!-- BEGIN: Vendor CSS-->
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/bootstrap-extended.css' %}" rel="stylesheet" type="text/css" />
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="horizontal-layout horizontal-menu content-detached-left-sidebar navbar-floating footer-static  "
+    data-open="hover" data-menu="horizontal-menu" data-col="content-detached-left-sidebar">
+
+    <div class="app-content content px-0 pt-3">
+        <div class="content-wrapper container-xxl p-0">
+            <div class="content">
+                {% for key, value in data.items %}
+                <div class="row" id="basic-table">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Container {{key}}
+                                </p>
+                                <p class="card-text">
+                                    Total weight: {{value.total}}
+                                </p>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Truck</th>
+                                            <th>Bundle</th>
+                                            <th>Weight NW</th>
+                                            <th>Weight GW</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in value.data %}
+                                        <tr>
+                                            <td>{{i.truck}}</td>
+                                            <td>{{i.bundle}}</td>
+                                            <td>{{i.nw}}</td>
+                                            <td>{{i.gw}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- END: Page Vendor JS-->
+
+</body>
+<!-- END: Body-->
+
+</html>

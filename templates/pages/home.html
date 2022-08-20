@@ -1,0 +1,86 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock title %}
+
+
+{% block css %}
+<!-- BEGIN: Page CSS-->
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/core/menu/menu-types/horizontal-menu.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/plugins/extensions/ext-component-sliders.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/pages/app-ecommerce.css' %}" />
+
+<style>
+   .r-icon {
+      font-size: 40px;
+   }
+
+   .navbar-container.d-flex.content {
+      height: 60px;
+   }
+
+   section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #e4e8eb;
+      border-top: 1px solid #e4e8eb;
+   }
+
+   .home-img {
+      border-radius: 20px;
+      border: 10px solid #a4c1d7;
+      border-bottom: none;
+   }
+</style>
+<!-- END: Page CSS-->
+{% endblock css %}
+
+{% block main %}
+<!-- BEGIN: Content-->
+<div class="app-content content px-0 pt-3">
+   <div class="content-wrapper container-xxl p-0">
+      <div class="content">
+         <div class="content-body">
+            <section id="pricing">
+               <div class="container-fluid">
+                  <div class="row">
+                     <form action="{% url 'pages:file_upload' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                           <label for="exampleFormControlSelect1">Select excel file</label>
+                           <input class="form-control" type="file" name="file" id="" required>
+                        </div>
+                        <div class="form-group">
+                           <label for="exampleFormControlSelect1">Select Bin Capacity</label>
+                           <select name="bin_capacity" class="form-control" id="exampleFormControlSelect1">
+                              <option>26.5</option>
+                           </select>
+                        </div>
+                        <button class="btn btn-primary mt-4" type="submit">
+                           submit
+                        </button>
+                     </form>
+                  </div>
+               </div>
+            </section>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+<!-- END: Content-->
+{% endblock main %}
+
+{% block js %}
+<!-- BEGIN: Page JS-->
+<script src="{% static 'js/scripts/pages/app-ecommerce.js' %}"></script>
+<!-- END: Page JS-->
+<script>
+   $(window).on("load", function () {
+      var num = "{{products.number}}"
+      $(`#pagination${num}`).addClass("active");
+   });
+</script>
+{% endblock js %}
