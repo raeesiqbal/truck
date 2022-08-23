@@ -43,7 +43,12 @@ class FileView(View):
         raees['weights'] = weights
         raees['items'] = list(range(len(weights)))
         raees['bins'] = raees['items']
-        raees['bin_capacity'] = float(request.POST["bin_capacity"])
+        if not request.POST["other_value"]:
+            raees['bin_capacity'] = float(request.POST["bin_capacity"])
+            print(float(request.POST["bin_capacity"]))
+        else:
+            print(float(request.POST["other_value"]))
+            raees['bin_capacity'] = float(request.POST["other_value"])
         # Create the mip solver with the SCIP backend.
         solver = pywraplp.Solver.CreateSolver('SCIP')
         if not solver:
@@ -109,7 +114,11 @@ class FileView(View):
                 raees_dic[i]["data"] = com_list
             print(raees_dic)
         else:
+            context = {
+                "message":"The problem does not have an optimal solution."
+            }
             print('The problem does not have an optimal solution.')
+            return render(request, "home.html", context=context)
     
         template_path = "pages/page3.html"
         context = {
