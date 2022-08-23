@@ -1,42 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
 
-{% block title %} Home {% endblock title %}
-
-
-{% block css %}
-<!-- BEGIN: Page CSS-->
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/core/menu/menu-types/horizontal-menu.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/plugins/extensions/ext-component-sliders.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/pages/app-ecommerce.css' %}" />
-
-<style>
-   .r-icon {
-      font-size: 40px;
-   }
-
-   .navbar-container.d-flex.content {
-      height: 60px;
-   }
-
-   section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #e4e8eb;
-      border-top: 1px solid #e4e8eb;
-   }
-
-   .home-img {
-      border-radius: 20px;
-      border: 10px solid #a4c1d7;
-      border-bottom: none;
-   }
-</style>
-<!-- END: Page CSS-->
-{% endblock css %}
-
 {% block main %}
 <!-- BEGIN: Content-->
 <div class="app-content content px-0 pt-3">
@@ -88,12 +52,6 @@
 </div>
 </div>
 <!-- END: Content-->
-{% endblock main %}
-
-{% block js %}
-<!-- BEGIN: Page JS-->
-<script src="{% static 'js/scripts/pages/app-ecommerce.js' %}"></script>
-<!-- END: Page JS-->
 <script>
    $('select').on('change', function () {
       if (this.value == "other") {
@@ -106,4 +64,4 @@
       }
    });
 </script>
-{% endblock js %}
+{% endblock main %}
