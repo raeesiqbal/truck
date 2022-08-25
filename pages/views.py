@@ -129,8 +129,6 @@ class FileView(View):
         col = 0
         for i in raees_dic:
             worksheet.write(row, col, "container number: {}".format(i["num"]))
-            row = row + 1
-            worksheet.write(row, col, "total weight: {}".format(i["total"]))
             row = row + 2
             worksheet.write(row, col, "Truck")
             col = col + 1
@@ -151,11 +149,14 @@ class FileView(View):
                 worksheet.write(row, col, ii["gw"])
                 row = row + 1
                 col = 0
+            col = col + 2
+            worksheet.write(row, col, i["total"])
+            col = 0
             row = row + 2
 
         workbook.close()
         output.seek(0)
-        filename = "django_simple.xlsx"
+        filename = "{}.xlsx".format(request.POST["file_name"])
         response = HttpResponse(
             output,
             content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
